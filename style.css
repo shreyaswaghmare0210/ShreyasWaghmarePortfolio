@@ -7,8 +7,13 @@
 
         /* Smooth scrolling effect */
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
         }
+
+        a {
+  scroll-behavior: smooth;
+}
+
 
         * {
             box-sizing: border-box;
@@ -43,18 +48,36 @@
           gap: 10px;
         }
 
-        .logo img{
-           width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          object-fit: cover;
-          transform: scale(1.2);
-          object-position: center 10%;
-          transition: transform 0.4s ease;
-          0 0 6px rgba(255, 140, 0, 0.6),
-          0 0 14px rgba(255, 140, 0, 0.45),
-          0 0 28px rgba(255, 140, 0, 0.3);
-        }
+        .logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--accent-color);
+
+  /* Glow */
+  box-shadow:
+    0 0 8px rgba(255, 81, 0, 0.6),
+    0 0 18px rgba(255, 81, 0, 0.4),
+    0 0 30px rgba(255, 81, 0, 0.25);
+
+  /* Zoom animation */
+  animation: logoZoom 2.8s ease-in-out infinite;
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.25);
+  box-shadow:
+    0 0 20px rgba(255, 81, 0, 1),
+    0 0 45px rgba(255, 81, 0, 0.8),
+    0 0 80px rgba(255, 81, 0, 0.6);
+}
+
+
+
 
         .logo span{
           font-size: 18px;
@@ -76,10 +99,6 @@
         }
 
         nav ul li a:hover { color: var(--accent-color); }
-
-        .nav{
-            
-        } 
 
         .menu-toggle {
             display: none;
@@ -181,6 +200,46 @@
             border-radius: 15px;
         }
 
+        /* Text animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.fade-up.delay-1 { animation-delay: 0.2s; }
+.fade-up.delay-2 { animation-delay: 0.4s; }
+.fade-up.delay-3 { animation-delay: 0.6s; }
+.fade-up.delay-4 { animation-delay: 0.8s; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-content h1 span {
+  text-shadow: 0 0 10px rgba(255,81,0,0.4);
+  transition: 0.3s;
+}
+
+.hero-content h1 span:hover {
+  text-shadow: 0 0 30px rgba(255,81,0,0.8);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
         /* --- Responsive --- */
         @media (max-width: 992px) {
             .hero { flex-direction: column-reverse; text-align: center; }
@@ -204,3 +263,96 @@
             nav ul.active { display: flex; }
             nav ul li { margin: 15px 0; }
         }
+
+        @keyframes pulseZoom {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 81, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 81, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 81, 0, 0.5);
+  }
+}
+
+.glow-img-wrap img {
+  animation: pulseZoom 4s ease-in-out infinite;
+}
+
+/* ===== Loader ===== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader-circle {
+  width: 70px;
+  height: 70px;
+  border: 5px solid rgba(255, 81, 0, 0.2);
+  border-top: 5px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+  box-shadow: 0 0 20px rgba(255, 81, 0, 0.6);
+}
+
+#loader h3 {
+  font-weight: 600;
+  color: var(--accent-color);
+  letter-spacing: 2px;
+}
+
+/* Spin animation */
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade out */
+#loader.fade-out {
+  animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes logoZoom {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 8px rgba(255, 81, 0, 0.6),
+      0 0 18px rgba(255, 81, 0, 0.4),
+      0 0 30px rgba(255, 81, 0, 0.25);
+  }
+
+  50% {
+    transform: scale(1.12);
+    box-shadow:
+      0 0 15px rgba(255, 81, 0, 0.9),
+      0 0 35px rgba(255, 81, 0, 0.6),
+      0 0 60px rgba(255, 81, 0, 0.4);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 8px rgba(255, 81, 0, 0.6),
+      0 0 18px rgba(255, 81, 0, 0.4),
+      0 0 30px rgba(255, 81, 0, 0.25);
+  }
+}
