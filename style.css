@@ -1,8 +1,8 @@
 :root {
-            --bg-color: #ffffff;
+            --bg-color: #000000;
             --accent-color: #FF5100; 
-            --text-main: #000000;
-            --text-muted: #000000;
+            --text-main: #ffffff;
+            --text-muted: #ffffff;
         }
 
         /* Smooth scrolling effect */
@@ -35,7 +35,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 8%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -92,7 +92,7 @@
         }
 
         nav ul li a { 
-            color: rgb(0, 0, 0); 
+            color: rgb(255, 255, 255); 
             text-decoration: none; 
             font-size: 0.95rem; 
             transition: 0.3s; 
@@ -128,8 +128,22 @@
             gap: 40px;
         }
 
+        /* Hero popup animation */
+.hero {
+  opacity: 0;
+  transform: translateX(80px) scale(0.95);
+  animation: heroPopup 3s ease-out forwards;
+}
+
+@keyframes heroPopup {
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
         .hero-content h4 { color: var(--text-muted); letter-spacing: 2px; }
-        .hero-content h1 { font-size: 3.5rem; margin: 10px 0; line-height: 1.1; }
+        .hero-content h1 { color: var(--accent-color); font-size: 3.5rem; margin: 10px 0; line-height: 1.1; }
         .hero-content h3 { color: var(--accent-color); margin-bottom: 20px; }
         .hero-content p { color: var(--text-muted); max-width: 500px; margin-bottom: 30px; }
 
@@ -275,6 +289,25 @@
 .hero-content h1 span:hover {
   text-shadow: 0 0 30px rgba(255,81,0,0.8);
 }
+
+#about {
+  background: #111;
+  color: #fff;
+}
+
+#about p {
+  color: #ccc;
+}
+
+# {
+  background: #111;
+  color: #fff;
+}
+
+#about p {
+  color: #ccc;
+}
+
 
 .reveal {
   opacity: 0;
