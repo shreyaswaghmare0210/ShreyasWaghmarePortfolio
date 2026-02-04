@@ -56,17 +56,24 @@ function typeEffect() {
 
 typeEffect();
 
-const reveals = document.querySelectorAll('.reveal');
+const revealElements = document.querySelectorAll(".reveal");
 
-window.addEventListener('scroll', () => {
-  reveals.forEach(el => {
-    const windowHeight = window.innerHeight;
+function revealOnScroll() {
+  revealElements.forEach(el => {
     const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 100) {
-      el.classList.add('active');
+    const elementBottom = el.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if (elementTop < windowHeight - 100 && elementBottom > 100) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
     }
   });
-});
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll(); // run once
 
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
@@ -75,3 +82,24 @@ window.addEventListener("load", () => {
     loader.classList.add("fade-out");
   }, 800); // delay for smooth feel
 });
+
+const skillSection = document.getElementById("skills");
+const bars = document.querySelectorAll(".bar-fill");
+
+function animateSkillsOnScroll() {
+  const sectionTop = skillSection.getBoundingClientRect().top;
+  const sectionBottom = skillSection.getBoundingClientRect().bottom;
+  const windowHeight = window.innerHeight;
+
+  if (sectionTop < windowHeight - 120 && sectionBottom > 120) {
+    bars.forEach(bar => {
+      bar.style.width = bar.dataset.percent + "%";
+    });
+  } else {
+    bars.forEach(bar => {
+      bar.style.width = "0%";
+    });
+  }
+}
+
+window.addEventListener("scroll", animateSkillsOnScroll);
