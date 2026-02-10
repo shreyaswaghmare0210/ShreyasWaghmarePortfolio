@@ -41,14 +41,14 @@ const mobileMenu = document.getElementById('mobile-menu');
             });
         });
 
-        const text = "Shreyas Waghmare";
+        const nameText = "Shreyas Waghmare";
 let index = 0;
 const speed = 100;
 const typingElement = document.getElementById("typing");
 
 function typeEffect() {
-  if (index < text.length) {
-    typingElement.textContent += text.charAt(index);
+  if (index < nameText.length) {
+    typingElement.textContent += nameText.charAt(index);
     index++;
     setTimeout(typeEffect, speed);
   }
@@ -103,3 +103,47 @@ function animateSkillsOnScroll() {
 }
 
 window.addEventListener("scroll", animateSkillsOnScroll);
+
+
+
+const skillTexts = [
+  "Frontend Developer",
+  "Web Designer",
+  "JavaScript Developer",
+  "Creative Thinker"
+];
+
+const skillElement = document.getElementById("typed-text");
+
+let skillIndex = 0;
+let charIndex = 0;
+let isTyping = true;
+
+const typingSpeed = 110;
+const deletingSpeed = 70;
+const pauseTime = 1000;
+
+function typeSkills() {
+  const currentSkill = skillTexts[skillIndex];
+
+  if (isTyping) {
+    skillElement.textContent = currentSkill.substring(0, charIndex + 1);
+    charIndex++;
+
+    if (charIndex === currentSkill.length) {
+      setTimeout(() => isTyping = false, pauseTime);
+    }
+  } else {
+    skillElement.textContent = currentSkill.substring(0, charIndex - 1);
+    charIndex--;
+
+    if (charIndex === 0) {
+      isTyping = true;
+      skillIndex = (skillIndex + 1) % skillTexts.length;
+    }
+  }
+
+  setTimeout(typeSkills, isTyping ? typingSpeed : deletingSpeed);
+}
+
+typeSkills();
