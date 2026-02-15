@@ -106,44 +106,85 @@ window.addEventListener("scroll", animateSkillsOnScroll);
 
 
 
-const skillTexts = [
-  "Frontend Developer",
-  "Web Designer",
-  "JavaScript Developer",
-  "Creative Thinker"
-];
+document.addEventListener("DOMContentLoaded", function () {
 
-const skillElement = document.getElementById("typed-text");
+  const skillTexts = [
+    "Frontend Developer",
+    "Web Designer",
+    "JavaScript Developer",
+    "Creative Thinker"
+  ];
 
-let skillIndex = 0;
-let charIndex = 0;
-let isTyping = true;
+  const skillElement = document.getElementById("typed-text");
 
-const typingSpeed = 110;
-const deletingSpeed = 70;
-const pauseTime = 1000;
+  let skillIndex = 0;
+  let charIndex = 0;
+  let isTyping = true;
 
-function typeSkills() {
-  const currentSkill = skillTexts[skillIndex];
+  const typingSpeed = 30;
+  const deletingSpeed = 50;
+  const pauseTime = 500;
 
-  if (isTyping) {
-    skillElement.textContent = currentSkill.substring(0, charIndex + 1);
-    charIndex++;
+  function typeSkills() {
+    const currentSkill = skillTexts[skillIndex];
 
-    if (charIndex === currentSkill.length) {
-      setTimeout(() => isTyping = false, pauseTime);
+    if (isTyping) {
+      skillElement.textContent = currentSkill.substring(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === currentSkill.length) {
+        isTyping = false;
+        setTimeout(typeSkills, pauseTime);
+        return;
+      }
+    } else {
+      skillElement.textContent = currentSkill.substring(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isTyping = true;
+        skillIndex = (skillIndex + 1) % skillTexts.length;
+      }
     }
-  } else {
-    skillElement.textContent = currentSkill.substring(0, charIndex - 1);
-    charIndex--;
 
-    if (charIndex === 0) {
-      isTyping = true;
-      skillIndex = (skillIndex + 1) % skillTexts.length;
-    }
+    setTimeout(typeSkills, isTyping ? typingSpeed : deletingSpeed);
   }
 
-  setTimeout(typeSkills, isTyping ? typingSpeed : deletingSpeed);
+  typeSkills();
+});
+
+const counters = document.querySelectorAll(".counter");
+const statsSection = document.getElementById("stats");
+
+let started = false;
+
+function startCounter() {
+  counters.forEach(counter => {
+    const target = +counter.getAttribute("data-target");
+    let count = 0;
+
+    const increment = target / 100;
+
+    const updateCounter = () => {
+      count += increment;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count);
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCounter();
+  });
 }
 
-typeSkills();
+const observer = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !started) {
+    startCounter();
+    started = true;
+  }
+}, { threshold: 0.5 });
+
+observer.observe(statsSection);
