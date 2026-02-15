@@ -581,31 +581,64 @@ nav {
   flex-wrap: wrap;
 }
 
-.social-icons {
-  display: flex;
-  gap: 14px;
-}
-
-.social-icons a {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+.cta-area{
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 20;
+}
 
-  color: #000000;
+.talk-btn{
+  display: inline-block;
+  padding: 14px 32px;
   font-size: 18px;
-
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff640a, #ff814d);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.social-icons a:hover {
-  background: var(--accent-color);
-  color: #000000;
-  transform: scale(1.15);
-  box-shadow: 0 0 18px rgba(255, 81, 0, 0.6);
+.talk-btn:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
+.talk-btn::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 120%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: skewX(-30deg);
+  transition: 0.6s;
+}
+
+.talk-btn:hover::before{
+  left: 120%;
+}
+
+.social-icons a{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 50%;
+  color: rgb(0, 0, 0);
+  margin-left: 25px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover{
+  background: rgb(0, 0, 0);
+  color: rgb(255, 115, 0);
+  box-shadow: 0 0 15px rgb(0, 0, 0);
+}
