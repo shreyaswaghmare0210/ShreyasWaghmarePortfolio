@@ -27,20 +27,6 @@ window.addEventListener("load", () => {
   }, 800);
 });
 
-
-const mobileMenu = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
-
-        mobileMenu.addEventListener('click', () => {
-            navList.classList.toggle('active');
-        });
-
-        document.querySelectorAll('#nav-list li a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
-
         const nameText = "Shreyas Waghmare";
 let index = 0;
 const speed = 100;
@@ -188,3 +174,35 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 
 observer.observe(statsSection);
+
+
+const mobileMenu = document.getElementById('mobile-menu');
+const navList = document.getElementById('nav-list');
+
+mobileMenu.addEventListener('click', () => {
+  navList.classList.toggle('active'); // open/close menu
+  mobileMenu.classList.toggle('active'); // animate hamburger
+});
+
+document.querySelectorAll('#nav-list a').forEach(link => {
+  link.addEventListener('click', () => {
+    navList.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  });
+});
+
+
+
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+  question.addEventListener('click', () => {
+    // Close other items
+    faqItems.forEach(i => {
+      if(i !== item) i.classList.remove('active');
+    });
+    // Toggle current item
+    item.classList.toggle('active');
+  });
+});
