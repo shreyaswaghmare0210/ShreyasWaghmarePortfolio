@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const counters = document.querySelectorAll(".counter");
-const statsSection = document.getElementById("stats");
+const statsSection = document.querySelector(".stats-section");
 
 let started = false;
 

@@ -2,17 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Shreyas Waghmare | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <script>
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
@@ -92,30 +86,35 @@ I pay close attention to design details, performance, and usability to ensure ev
 
 <section class="experience-section">
 
-  <div class="experience-content">
-    <h2 align="center">My Experience</h2>
-    <p>
-      I am a passionate Frontend Developer specializing in building responsive,
-      user-friendly websites using HTML, CSS, JavaScript, and modern frameworks.
-      I focus on clean design, smooth animations, and performance optimization.
-    </p>
+  <!-- Heading upar center me -->
+  <h2 class="section-title">My <span>Experience</span></h2>
 
-    <p>
-      I have worked on multiple portfolio websites, landing pages, and
-      interactive UI projects that showcase modern design principles.
-    </p>
-  </div>
+  <div class="experience-wrapper">
 
-  <div class="stats-section" id="stats">
-    <div class="stat-card">
-      <h2><span class="counter" data-target="2">0</span>+</h2>
-      <p>Years of Experience</p>
+    <div class="experience-content">
+      <p>
+        I am a passionate Frontend Developer specializing in building responsive,
+        user-friendly websites using HTML, CSS, JavaScript, and modern frameworks.
+      </p>
+
+      <p>
+        I have worked on multiple portfolio websites, landing pages, and
+        interactive UI projects that showcase modern design principles.
+      </p>
     </div>
 
-    <div class="stat-card">
-      <h2><span class="counter" data-target="20">0</span>+</h2>
-      <p>Projects Completed</p>
+    <div class="stats-section">
+      <div class="stat-card">
+        <h2><span class="counter" data-target="2">2</span>+</h2>
+        <p>Years of Experience</p>
+      </div>
+
+      <div class="stat-card">
+        <h2><span class="counter" data-target="20">20</span>+</h2>
+        <p>Projects Completed</p>
+      </div>
     </div>
+
   </div>
 
 </section>
@@ -369,7 +368,7 @@ My goal is to grow as a developer, work on meaningful projects, and build high-q
 <section id="contact">
   <div class="contact-container">
     <h2>Contact Me</h2>
-    <form id="contact-form" action="#" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xojnkppz" method="POST">
       
       <div class="form-group">
         <label for="name"></label>
@@ -391,7 +390,7 @@ My goal is to grow as a developer, work on meaningful projects, and build high-q
   </div>
 </section>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
 
